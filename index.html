@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/main.css" />
+    <title>Book Shop</title>
+  </head>
+  <body onload="onInit()" onkeyup="onKeyUp(event)">
+    <div class="root">
+      <header>
+        <section class="logo"><span>Book Academy<span></section>
+          <section class="view">
+            <button onclick="onUserView('user')">User View</button>
+            <button onclick="onUserView('admin')">Admin View</button>
+          </section>
+      </header>
+      <main>
+        <h1>What will you 
+          <span class="left">read</span> 
+          <span class="right"> today?</span>
+        </h1>
+       
+
+        <section class="book-filter">
+          <h4>Filter</h4>
+          <select
+            class="filter-genre-select"
+            onchange="onSetFilterBy({genre: this.value})"></select>
+          <label>
+            Max Price:
+            <input
+              type="range"
+              min="10"
+              max="300"
+              value="50"
+              class="filter-maxPrice-range"
+              onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
+          </label>
+          <label>
+            Min Rate:
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value="0"
+              class="filter-minRate-range"
+              onchange="this.title=this.value;onSetFilterBy({minRate: this.value})" />
+          </label>
+          <label>
+            Search:
+            <input
+              type="text"
+              class="filter-title"
+              oninput="onSearchChange(this.value)" />
+            <button onclick="onClearSearch()">Clear</button>
+          </label>
+        </section>
+
+        <hr />
+
+        <section class="book-sort">
+          Sort by:
+          <select class="sort-by" onchange="onSetSort(this.value)">
+            <option value="">Select Sorting</option>
+            <option value="title">Title</option>
+            <option value="price">Price</option>
+          </select>
+          <label>
+            Descending
+            <input class="sort-desc" type="checkbox" onchange="onSetSortBy()" />
+          </label>
+        </section>
+
+        <section class="book-table"></section>
+
+        <section class="book-cards grid-card-container">
+
+        </section>
+
+        <dialog class="modal">
+          <p>DESCRIPTION</p>
+          <form method="dialog">
+            <div class="modal__content"></div>
+            <button class="modal__closeBtn btn--style2" type="reset">OK</button>
+          </form>
+        </dialog>
+        <div class="modal__result"></div>
+      </main>
+      <footer></footer>
+    </div>
+    <script src="js/util.js"></script>
+    <script src="js/bookTitle.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/services/localStorage.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+  </body>
+</html>
